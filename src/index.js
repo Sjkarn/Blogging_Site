@@ -1,14 +1,13 @@
 const express = require("express");
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const route = require("./routes/route.js");
-const { default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
 const app = express();
 
-mongoose.set("strictQuery", false);
+mongoose.set("strictQuery", true);
 
-app.use(express.json());
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose
   .connect(
@@ -23,5 +22,5 @@ mongoose
 app.use("/", route);
 
 app.listen(process.env.PORT || 3000, function () {
-  console.log("Express app running on port " + (process.env.PORT || 3000));
+  console.log("Express app running on port " + " " + (process.env.PORT || 3000));
 });
